@@ -43,14 +43,14 @@ public class FilmeDAOImpl implements FilmeDAO {
 	@Override
 	public void edit(Connection conn, Filme filme) throws Exception {
 		
-		PreparedStatement ps = conn
+		PreparedStatement myStmt = conn
 				.prepareStatement("UPDATE en_filme SET data_lancamento=?, nome=?, descricao=? WHERE id_filme=?");
-		ps.setDate(1, new java.sql.Date(filme.getDataLancamento().getTime()));
-		ps.setString(2, filme.getNome());
-		ps.setString(3, filme.getDescricao());
-		ps.setInt(4, filme.getIdFilme());
-		ps.executeUpdate();
-		ps.close();
+		myStmt.setDate(1, new java.sql.Date(filme.getDataLancamento().getTime()));
+		myStmt.setString(2, filme.getNome());
+		myStmt.setString(3, filme.getDescricao());
+		myStmt.setInt(4, filme.getIdFilme());
+		myStmt.executeUpdate();
+		myStmt.close();
 
 		conn.commit();
 	
