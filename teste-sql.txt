@@ -1,0 +1,28 @@
+Seu nome: Bernardo Souza de Oliveira
+
+1)
+
+SELECT * FROM en_filme ORDER BY data_lancamento ASC LIMIT 1;
+
+2)
+
+SELECT c.id_cliente, c.nome,
+(SELECT COUNT(*) 
+FROM en_aluguel AS al
+WHERE al.id_cliente = c.id_cliente ) as alugueis
+FROM en_cliente as c
+ORDER BY alugueis ASC;
+
+3)
+
+SELECT c.id_cliente, c.nome,
+(SELECT COUNT(*) 
+FROM en_aluguel
+WHERE id_cliente=c.id_cliente 
+AND Date_part('year', data_aluguel) = Date_part('year', al.data_aluguel)) as alugueis, sum(al.valor) as total_gasto,al.data_aluguel 
+FROM en_aluguel AS al
+INNER JOIN en_cliente AS c
+ON c.id_cliente = al.id_cliente
+GROUP BY c.id_cliente, al.data_aluguel
+ORDER BY total_gasto DESC;
+
