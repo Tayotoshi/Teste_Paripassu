@@ -1,1 +1,1 @@
-oi
+Tentei seguir os mesmos padrões e lógica da classe já feita ClienteDAOImpl, para todas as demais.
